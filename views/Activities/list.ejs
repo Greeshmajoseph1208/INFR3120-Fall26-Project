@@ -19,12 +19,12 @@
                     <th>Status</th>
                 </tr>
 
-                <!-- Activity Records -->
+                <!-- Activity Items -->
                 <% for(let count=0; count<Activitylist.length; count++) { %>
                     <tr>
                         <td><%= Activitylist[count].name %></td>
                         <td><%= Activitylist[count].course %></td>
-                        <td><%= Activitylist[count].dueDate ? Activitylist[count].dueDate.toLocaleDateString() : '' %></td>
+                        <td><%= Activitylist[count].dueDate %></td>
                         <td><%= Activitylist[count].description %></td>
                         <td><%= Activitylist[count].status %></td>
                     </tr>

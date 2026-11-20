@@ -2,59 +2,51 @@
 <%- include ../partials/header.ejs %>
 <%- include ../partials/main_nav.ejs %>
 
-<!-- Main Content -->
 <main class="container">
-    <div class="row">
-        <div class="offset-md-2 col-md-8">
-            <h1><%= title %></h1>
+    <h1><%= title %></h1>
+
+    <!--Activity Form-->
+
+    <form action="/activities/add" method="post" name="form">
+
+        <p>
+            <label for="name">Activity Name :</label>
+            <input type="text" id="name" name="name" size="32"
+            placeholder="Enter activity name" required>
+        </p>
+
+        <p>
+            <label for="course">Course :</label>
+            <input type="text" id="course" name="course" size="32"
+            placeholder="Enter course name" required>
+        </p>
+
+        <p>
+            <label for="dueDate">Due Date :</label>
+            <input type="date" id="dueDate" name="dueDate" required>
+        </p>
+
+        <p>
+            <label for="comment">Comment :</label>
             <br>
+            <textarea id="comment" name="comment"
+            cols="60" rows="6"></textarea>
+        </p>
 
-            <form method="POST" action="/activities/add">
+        <p>
+            <label for="status">Activity Status :</label>
+            <select id="status" name="status">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </p>
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Activity Name</label>
-                    <input type="text" class="form-control"
-                           id="name" name="name" required>
-                </div>
+        <input type="submit" value="Add Activity">
+        <input type="reset" value="Reset Form">
 
-                <div class="mb-3">
-                    <label for="course" class="form-label">Course</label>
-                    <input type="text" class="form-control"
-                           id="course" name="course" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="dueDate" class="form-label">Due Date</label>
-                    <input type="date" class="form-control"
-                           id="dueDate" name="dueDate" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description"
-                              name="description" rows="3"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select class="form-select" id="status" name="status">
-                        <option value="Pending">Pending</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Add Activity
-                </button>
-
-                <a href="/activities" class="btn btn-secondary">
-                    Cancel
-                </a>
-
-            </form>
-        </div>
-    </div>
+    </form>
 </main>
+
 
 <%- include ../partials/footer.ejs %>

@@ -1,3 +1,4 @@
+
 <%- include partials/header.ejs %>
 <%- include partials/main_nav.ejs %>
     <h1><%= title %></h1>
@@ -14,5 +15,16 @@
         manage tasks, and stay organized with
         upcoming deadlines.
     </p>
-    
+
+    <!--Create Button-->
+<a class="btn btn-primary" href="/activities/add">
+    <i class="fa-solid fa-plus"></i> Create Activity
+</a>
+
+
+<!-- View Activities Button -->
+<a class="btn btn-primary" href="/activities">
+    <i class="fa-solid fa-list"></i> View Activities
+</a>
+
 <%- include partials/footer.ejs %>
