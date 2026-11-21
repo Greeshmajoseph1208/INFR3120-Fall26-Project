@@ -1,4 +1,3 @@
-
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -32,6 +31,25 @@ router.get('/add', function(req, res, next) {
     res.render('Activities/add', {
         title: 'Add Activity'
     });
+});
+
+/* POST - Process Add Activity */
+router.post('/add', async(req, res, next) => {
+    console.log('FORM DATA:', req.body);
+    try {
+        await Activity.create({
+            name: req.body.name,
+            course: req.body.course,
+            dueDate: req.body.dueDate,
+            comment: req.body.comment,
+            status: req.body.status || 'Pending'
+        });
+        res.redirect('/activities');
+    }
+    catch(err) {
+        console.log(err);
+        res.redirect('/activities');
+    }
 });
 
 /* Update Operation */
