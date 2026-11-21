@@ -5,8 +5,6 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 let indexRouter = require('../routes/index');
-let usersRouter = require('../routes/users');
-let booksRouter = require('../routes/book');
 let activityRouter = require('../routes/activity');
 const { title } = require('process');
 
@@ -34,8 +32,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname,'../node_modules')));
 
 app.use('/', indexRouter);
-app.use('/books',booksRouter)
-app.use('/users', usersRouter);
 app.use('/activities', activityRouter);
 
 // catch 404 and forward to error handler
