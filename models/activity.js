@@ -6,7 +6,7 @@ let activityModel = mongoose.Schema({
     name: String,
     course: String,
     dueDate: Date,
-    description: String,
+    comment: String,
     status: String
 },
 {
