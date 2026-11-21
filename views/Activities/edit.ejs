@@ -1,0 +1,48 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<main class="container" style="padding-bottom: 120px;">
+    <h1><%= title %></h1>
+
+    <form action="/activities/edit/<%= activity._id %>" method="POST">
+
+        <p>
+            <label for="name">Activity Name :</label>
+            <input type="text" id="name" name="name" size="32"
+            value="<%= activity.name %>" required>
+        </p>
+
+        <p>
+            <label for="course">Course :</label>
+            <input type="text" id="course" name="course" size="32"
+            value="<%= activity.course %>" required>
+        </p>
+
+        <p>
+            <label for="dueDate">Due Date :</label>
+            <input type="date" id="dueDate" name="dueDate"
+            value="<%= activity.dueDate ? activity.dueDate.toISOString().split('T')[0] : '' %>" required>
+        </p>
+
+        <p>
+            <label for="comment">Comment :</label>
+            <br>
+            <textarea id="comment" name="comment" cols="60" rows="6"><%= activity.comment %></textarea>
+        </p>
+
+        <p>
+            <label for="status">Activity Status :</label>
+            <select id="status" name="status">
+                <option value="Pending" <%= activity.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                <option value="In Progress" <%= activity.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+                <option value="Completed" <%= activity.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+            </select>
+        </p>
+
+        <input type="submit" value="Save Changes">
+        <a href="/activities">Cancel</a>
+
+    </form>
+</main>
+
+<%- include ../partials/footer.ejs %>

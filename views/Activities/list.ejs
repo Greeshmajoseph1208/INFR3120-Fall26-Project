@@ -1,4 +1,3 @@
-
 <%- include ../partials/header.ejs %>
 <%- include ../partials/main_nav.ejs %>
 
@@ -17,6 +16,7 @@
                     <th>Due Date</th>
                     <th>Comment</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
 
                 <!-- Activity Items -->
@@ -24,9 +24,21 @@
                     <tr>
                         <td><%= Activitylist[count].name %></td>
                         <td><%= Activitylist[count].course %></td>
-                        <td><%= Activitylist[count].dueDate %></td>
+                        <td><%= Activitylist[count].dueDate ? Activitylist[count].dueDate.toISOString().split('T')[0] : '' %></td>
                         <td><%= Activitylist[count].comment %></td>
                         <td><%= Activitylist[count].status %></td>
+                        <td>
+                            <a href="/activities/edit/<%= Activitylist[count]._id %>" class="btn btn-sm btn-primary">Edit</a>
+
+                            <form action="/activities/complete/<%= Activitylist[count]._id %>" method="POST" style="display:inline">
+                                <button type="submit" class="btn btn-sm btn-success">Mark Completed</button>
+                            </form>
+
+                            <form action="/activities/delete/<%= Activitylist[count]._id %>" method="POST" style="display:inline"
+                                  onsubmit="return confirm('Delete this activity?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <% } %>
             </table>

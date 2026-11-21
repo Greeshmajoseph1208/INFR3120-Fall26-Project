@@ -35,7 +35,6 @@ router.get('/add', function(req, res, next) {
 
 /* POST - Process Add Activity */
 router.post('/add', async(req, res, next) => {
-    console.log('FORM DATA:', req.body);
     try {
         await Activity.create({
             name: req.body.name,
@@ -53,7 +52,62 @@ router.post('/add', async(req, res, next) => {
 });
 
 /* Update Operation */
+/* GET - Display Edit Page */
+router.get('/edit/:id', async(req, res, next) => {
+    try {
+        const activity = await Activity.findById(req.params.id);
+        res.render('Activities/edit', {
+            title: 'Edit Activity',
+            activity: activity
+        });
+    }
+    catch(err) {
+        console.log(err);
+        res.redirect('/activities');
+    }
+});
+
+/* POST - Process Edit */
+router.post('/edit/:id', async(req, res, next) => {
+    try {
+        await Activity.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
+            course: req.body.course,
+            dueDate: req.body.dueDate,
+            comment: req.body.comment,
+            status: req.body.status
+        });
+        res.redirect('/activities');
+    }
+    catch(err) {
+        console.log(err);
+        res.redirect('/activities');
+    }
+});
 
 /* Delete Operation */
+/* POST - Mark as Completed */
+router.post('/complete/:id', async(req, res, next) => {
+    try {
+        await Activity.findByIdAndUpdate(req.params.id, { status: 'Completed' });
+        res.redirect('/activities');
+    }
+    catch(err) {
+        console.log(err);
+        res.redirect('/activities');
+    }
+});
+
+/* POST - Delete Activity */
+router.post('/delete/:id', async(req, res, next) => {
+    try {
+        await Activity.findByIdAndDelete(req.params.id);
+        res.redirect('/activities');
+    }
+    catch(err) {
+        console.log(err);
+        res.redirect('/activities');
+    }
+});
 
 module.exports = router;
