@@ -1,1 +1,1 @@
-module.exports={"URI":"mongodb://localhost:27017/studentActivityTracker"}
+module.exports={"URI": process.env.MONGODB_URI || "mongodb://localhost:27017/studentActivityTracker"}
